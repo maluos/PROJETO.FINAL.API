@@ -1,0 +1,7 @@
+{
+	"info": { "name": "API Trabalho", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json" },
+	"item": [
+		{ "name": "Listar Livros", "request": { "method": "GET", "url": "http://localhost:3000/books?page=1&limit=5" } },
+		{ "name": "Registrar", "request": { "method": "POST", "url": "http://localhost:3000/register", "body": { "mode": "raw", "raw": "{\"username\":\"aluno\",\"password\":\"123\"}", "options": { "raw": { "language": "json" } } } } }
+	]
+}
