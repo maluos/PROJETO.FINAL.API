@@ -1,7 +1,94 @@
 {
-	"info": { "name": "API Trabalho", "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json" },
+	"info": {
+		"name": "API Livraria - Projeto Final",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
 	"item": [
-		{ "name": "Listar Livros", "request": { "method": "GET", "url": "http://localhost:3000/books?page=1&limit=5" } },
-		{ "name": "Registrar", "request": { "method": "POST", "url": "http://localhost:3000/register", "body": { "mode": "raw", "raw": "{\"username\":\"aluno\",\"password\":\"123\"}", "options": { "raw": { "language": "json" } } } } }
+		{
+			"name": "Auth: Registrar Usuário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"aluno_teste\",\n    \"password\": \"senha123\"\n}",
+					"options": { "raw": { "language": "json" } }
+				},
+				"url": "http://localhost:8080/register"
+			}
+		},
+		{
+			"name": "Auth: Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"aluno_teste\",\n    \"password\": \"senha123\"\n}",
+					"options": { "raw": { "language": "json" } }
+				},
+				"url": "http://localhost:8080/login"
+			}
+		},
+		{
+			"name": "Books: Listar (Filtros e Paginação)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/books?page=1&limit=5&genre=Ficção&sort=year",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["books"],
+					"query": [
+						{ "key": "page", "value": "1" },
+						{ "key": "limit", "value": "5" },
+						{ "key": "genre", "value": "Ficção" },
+						{ "key": "sort", "value": "year" }
+					]
+				}
+			}
+		},
+		{
+			"name": "Books: Criar Novo (Requer Token)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{ "key": "Authorization", "value": "Bearer SEU_TOKEN_AQUI", "type": "text" }
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"O Senhor dos Anéis\",\n    \"author\": \"J.R.R. Tolkien\",\n    \"year\": 1954,\n    \"genre\": \"Fantasia\"\n}",
+					"options": { "raw": { "language": "json" } }
+				},
+				"url": "http://localhost:8080/books"
+			}
+		},
+		{
+			"name": "Books: Atualizar (Requer Token)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{ "key": "Authorization", "value": "Bearer SEU_TOKEN_AQUI", "type": "text" }
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Título Atualizado\"\n}",
+					"options": { "raw": { "language": "json" } }
+				},
+				"url": "http://localhost:8080/books/1"
+			}
+		},
+		{
+			"name": "Books: Deletar (Requer Token)",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{ "key": "Authorization", "value": "Bearer SEU_TOKEN_AQUI", "type": "text" }
+				],
+				"url": "http://localhost:8080/books/1"
+			}
+		}
 	]
 }
